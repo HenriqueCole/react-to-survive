@@ -46,7 +46,7 @@ export default function WelcomePage() {
               <h1 className="h1GameName">React To Survive</h1>
             </div>
             <div className="containerActionsText">
-              <Link to="#">Play!</Link>
+              <Link to="/phase-one">Play!</Link>
               <Link to="#">Ranking</Link>
               <Link to="#">Leave</Link>
               <button
