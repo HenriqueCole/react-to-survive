@@ -3,7 +3,7 @@ import backgroundImg from "../../assets/Scenaries/scenary1.gif";
 import { Link } from "react-router-dom";
 
 import useSound from "use-sound";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { motion } from "framer-motion";
 
@@ -18,37 +18,57 @@ import playerRunningLeft from "../../assets/Players/Player1-left.gif";
 import playerRunningRight from "../../assets/Players/Player1-right.gif";
 
 import "./styles.css";
+
 export default function Scenary1Page() {
-  const [player, setPlayer] = useState(playerStopRight);
+
+  const [playerStyle, setPlayerStyle] = useState(playerStopRight);
+  const [playerPosition, setPlayerPosition] = useState(10);
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown, true);
+    document.addEventListener("keyup", handleKeyUp, true);
+  }, []);
+
+  
+  const handleKeyDown = e => {
+    
+    if (e.key === "ArrowLeft") {
+      setPlayerStyle(playerRunningLeft);
+      setPlayerPosition(prevState => (
+        prevState - 8
+      ));
+    }
+    if (e.key === "ArrowRight") {
+      setPlayerStyle(playerRunningRight);
+      setPlayerPosition(prevState => (
+        prevState + 8
+      ));
+    }
+  };
+
+
+  const handleKeyUp = e => {
+    if (e.key === "ArrowLeft") {
+      setPlayerStyle(playerStopLeft);
+    }
+    if (e.key === "ArrowRight") {
+      setPlayerStyle(playerStopRight);
+    }
+  }
 
   return (
-    <div className="Scenary1PageContainer"
-    onKeyDown={(e) => handleKeySide(e)}
-    
-    >
+    <div className="Scenary1PageContainer" >
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={backgroundImg} alt="" />
         <div className="containerPlayer">
           <img
-            className="playerGif"
-            src={player}
-            alt=""
+            id="player1"
+            src={playerStyle}
+            style={{ left: playerPosition }}
           />
         </div>
       </div>
     </div>
   );
 
-  function handleKeySide(e) {
-    console.log("teste");
-    
-    if (e.key === "ArrowLeft") {
-      setPlayer(playerRunningLeft);
-
-
-    }
-    if (e.key === "ArrowRight") {
-      setPlayer(playerRunningRight);
-    }
-  }
 }

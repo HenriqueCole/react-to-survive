@@ -52,7 +52,6 @@ export default function WelcomePage() {
               <button
                 onClick={toggle}
                 >
-
                 {playing ? "Music off" : "Music on"}
               </button>
             </div>
