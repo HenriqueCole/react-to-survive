@@ -3,25 +3,38 @@ import backgroundImg from "../../assets/Scenaries/scenary1.gif";
 import { Link } from "react-router-dom";
 
 import useSound from "use-sound";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import song from "../../music/game-music.mp3";
 
 import "./styles.css";
 
+const useAudio = url => {
+  const [audio] = useState(new Audio(url));
+  const [playing, setPlaying] = useState(false);
+
+  const toggle = () => setPlaying(!playing);
+
+  useEffect(() => {
+      playing ? audio.play() : audio.pause();
+    },
+    [playing]
+  );
+
+  useEffect(() => {
+    audio.addEventListener('ended', () => setPlaying(false));
+    return () => {
+      audio.removeEventListener('ended', () => setPlaying(false));
+    };
+  }, []);
+
+  return [playing, toggle];
+};
+
 export default function WelcomePage() {
-  const [play] = useSound(song);
-  const [isPlaying, setIsPlaying] = useState(false);
 
-  function handleSound() {
-    if (isPlaying) {
-      setIsPlaying(false);
-    } else {
-      setIsPlaying(true);
-      play();
-    }
-  }
-
+  const [playing, toggle] = useAudio(song);
+  
   return (
     <div className="WelcomePageContainer">
       <body>
@@ -37,11 +50,10 @@ export default function WelcomePage() {
               <Link to="#">Ranking</Link>
               <Link to="#">Leave</Link>
               <button
-                onClick={() => {
-                  handleSound();
-                }}
-              >
-                {isPlaying ? "Music on" : "Music off"}
+                onClick={toggle}
+                >
+
+                {playing ? "Music off" : "Music on"}
               </button>
             </div>
           </div>
