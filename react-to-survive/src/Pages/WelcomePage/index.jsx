@@ -33,7 +33,7 @@ const useAudio = url => {
 
 export default function WelcomePage() {
 
-  const [playing, toggle] = useAudio(song);
+  const [isPlaying, toggle] = useAudio(song);
   
   return (
     <div className="WelcomePageContainer">
@@ -52,7 +52,7 @@ export default function WelcomePage() {
               <button
                 onClick={toggle}
                 >
-                {playing ? "Music off" : "Music on"}
+                {isPlaying ? "Music on" : "Music off"}
               </button>
             </div>
           </div>

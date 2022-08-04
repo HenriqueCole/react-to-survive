@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 
 import song from "../../music/game-music.mp3";
 
+import NewArrom from "../../components/arrow";
+
 import playerStopLeft from "../../assets/Players/Player1-stopped-left.gif";
 import playerStopRight from "../../assets/Players/Player1-stopped-right.gif";
 import playerDead from "../../assets/Players/Player1-dead.gif";
@@ -35,6 +37,7 @@ import enemie4StopRight from "../../assets/Enemie1/enemie1-stopped-right.gif";
 import enemie4RunningLeft from "../../assets/Enemie1/enemie1-left.gif";
 import enemie4RunningRight from "../../assets/Enemie1/enemie1-right.gif";
 
+
 import "./styles.css";
 
 export default function Scenary1Page() {
@@ -47,7 +50,6 @@ export default function Scenary1Page() {
     document.addEventListener("keydown", handleKeyDown, true);
     document.addEventListener("keyup", handleKeyUp, true);
   }, []);
-
 
   const handleKeyDown = e => {
 
@@ -88,16 +90,25 @@ export default function Scenary1Page() {
   const [enemie4, setEnemie4] = useState(enemie4StopRight);
   const [posEnemie4, setPosEnemie4] = useState(1200);
   const [speedEnemie4, setSpeedEnemie4] = useState(101);
+
   const [score, setScore] = useState(0);
+
+  // Verificação dos NPCs
   const [goingBack1, setGoingBack1] = useState(false);
   const [goingBack2, setGoingBack2] = useState(true);
   const [goingBack3, setGoingBack3] = useState(false);
   const [goingBack4, setGoingBack4] = useState(true);
+
   const [dead, setDead] = useState(false);
+
+  // Lista de flechas
+  const [arrowList, setArrowList] = useState([]);
+
 
   useEffect(() => {
     // CONTROLE DE IDA DO INIMIGO 1
     // INIMIGO 1
+
     if (posEnemie1 >= 0 && posEnemie1 <= window.innerWidth && !goingBack1) {
       setEnemie1(enemie1RunningRight);
       const interval = setInterval(() => {
@@ -111,21 +122,29 @@ export default function Scenary1Page() {
     }
     // CONTROLE DE VOLTA DO INIMIGO 1
     if (posEnemie1 >= 0 && posEnemie1 <= window.innerWidth && goingBack1) {
+
       setEnemie1(enemie1RunningLeft);
+
       const interval = setInterval(() => {
         setPosEnemie1((prevState) => prevState - 10);
       }, speedEnemie1);
+
       if (posEnemie1 <= 0) {
         setGoingBack1(false);
         clearInterval(interval);
       }
+
       return () => clearInterval(interval);
     }
+
   }, [posEnemie1, goingBack1]);
+
+ 
 
   useEffect(() => {
     // CONTROLE DE IDA INIMIGO 2
     // INIMIGO 2
+
     if (posEnemie2 >= 0 && posEnemie2 <= window.innerWidth && !goingBack2) {
       setEnemie2(enemie2RunningRight);
       const interval = setInterval(() => {
@@ -211,11 +230,21 @@ export default function Scenary1Page() {
     }
   }, [posEnemie4, goingBack4]);
 
+  const getArrows = (shooter) => {
+    const random = Math.floor(Math.random() * 1000 + 1);
+    console.log(shooter,random)
+    if (random > 995) {
+        setArrowList(prevState => [...prevState, <NewArrow shooter={shooter}/>]);
+    }
+    return arrowList.map(arr => arr);
+  }
+
   return (
     <div className="Scenary1PageContainer" onKeyDown={(e) => handleKeySide(e)}>
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={backgroundImg} alt="" />
         <div className="containerEnemies">
+          {getArrows()}
           <img
             className="enemie1"
             src={enemie1}
@@ -223,20 +252,20 @@ export default function Scenary1Page() {
               left: posEnemie1,
             }}
           />
-          <img
+          {/* <img
             className="enemie2"
             src={enemie2}
             style={{
               left: posEnemie2,
             }}
-          />
+          /> */}
           <img
             id="player1"
             src={playerStyle}
             style={{ left: playerPosition }}
           />
 
-          <img
+          {/* <img
             className="enemie3"
             src={enemie3}
             style={{
@@ -250,7 +279,7 @@ export default function Scenary1Page() {
             style={{
               left: posEnemie4,
             }}
-          />
+          /> */}
         </div>
       </div>
     </div>
