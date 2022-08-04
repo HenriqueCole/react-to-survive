@@ -39,6 +39,7 @@ import "./styles.css";
 
 export default function Scenary1Page() {
 
+  //PLAYER
   const [playerStyle, setPlayerStyle] = useState(playerStopRight);
   const [playerPosition, setPlayerPosition] = useState(10);
 
@@ -74,15 +75,19 @@ export default function Scenary1Page() {
     }
   }
 
-  const [player, setPlayer] = useState(playerStopRight);
+  //Inimigos
   const [enemie1, setEnemie1] = useState(enemie1StopRight);
   const [posEnemie1, setPosEnemie1] = useState(100);
+  const [speedEnemie1, setSpeedEnemie1] = useState(60);
   const [enemie2, setEnemie2] = useState(enemie2StopRight);
   const [posEnemie2, setPosEnemie2] = useState(300);
+  const [speedEnemie2, setSpeedEnemie2] = useState(75);
   const [enemie3, setEnemie3] = useState(enemie3StopRight);
   const [posEnemie3, setPosEnemie3] = useState(600);
+  const [speedEnemie3, setSpeedEnemie3] = useState(89);
   const [enemie4, setEnemie4] = useState(enemie4StopRight);
   const [posEnemie4, setPosEnemie4] = useState(1200);
+  const [speedEnemie4, setSpeedEnemie4] = useState(101);
   const [score, setScore] = useState(0);
   const [goingBack1, setGoingBack1] = useState(false);
   const [goingBack2, setGoingBack2] = useState(true);
@@ -95,10 +100,9 @@ export default function Scenary1Page() {
     // INIMIGO 1
     if (posEnemie1 >= 0 && posEnemie1 <= window.innerWidth && !goingBack1) {
       setEnemie1(enemie1RunningRight);
-      console.log(posEnemie1);
       const interval = setInterval(() => {
         setPosEnemie1((prevState) => prevState + 10);
-      }, 60);
+      }, speedEnemie1);
       if (posEnemie1 >= window.innerWidth - 120) {
         setGoingBack1(true);
         clearInterval(interval);
@@ -108,10 +112,9 @@ export default function Scenary1Page() {
     // CONTROLE DE VOLTA DO INIMIGO 1
     if (posEnemie1 >= 0 && posEnemie1 <= window.innerWidth && goingBack1) {
       setEnemie1(enemie1RunningLeft);
-      console.log(posEnemie1);
       const interval = setInterval(() => {
         setPosEnemie1((prevState) => prevState - 10);
-      }, 60);
+      }, speedEnemie1);
       if (posEnemie1 <= 0) {
         setGoingBack1(false);
         clearInterval(interval);
@@ -125,10 +128,9 @@ export default function Scenary1Page() {
     // INIMIGO 2
     if (posEnemie2 >= 0 && posEnemie2 <= window.innerWidth && !goingBack2) {
       setEnemie2(enemie2RunningRight);
-      console.log(posEnemie2);
       const interval = setInterval(() => {
         setPosEnemie2((prevState) => prevState + 10);
-      }, 75);
+      }, speedEnemie2);
 
       if (posEnemie2 >= window.innerWidth - 120) {
         setGoingBack2(true);
@@ -140,10 +142,9 @@ export default function Scenary1Page() {
     //CONTROLE DE VOLTA DO INIMIGO 2
     if (posEnemie2 >= 0 && posEnemie2 <= window.innerWidth && goingBack2) {
       setEnemie2(enemie2RunningLeft);
-      console.log(posEnemie2);
       const interval = setInterval(() => {
         setPosEnemie2((prevState) => prevState - 10);
-      }, 75);
+      }, speedEnemie2);
       if (posEnemie2 <= 0) {
         setGoingBack2(false);
         clearInterval(interval);
@@ -157,10 +158,9 @@ export default function Scenary1Page() {
     // INIMIGO 3
     if (posEnemie3 >= 0 && posEnemie3 <= window.innerWidth && !goingBack3) {
       setEnemie3(enemie3RunningRight);
-      console.log(posEnemie3);
       const interval = setInterval(() => {
         setPosEnemie3((prevState) => prevState + 10);
-      }, 89);
+      }, speedEnemie3);
       if (posEnemie3 >= window.innerWidth - 120) {
         setGoingBack3(true);
         clearInterval(interval);
@@ -171,10 +171,9 @@ export default function Scenary1Page() {
     // CONTROLE DE VOLTA DO INIMIGO 3
     if (posEnemie3 >= 0 && posEnemie3 <= window.innerWidth && goingBack3) {
       setEnemie3(enemie3RunningLeft);
-      console.log(posEnemie3);
       const interval = setInterval(() => {
         setPosEnemie3((prevState) => prevState - 10);
-      }, 89);
+      }, speedEnemie3);
       if (posEnemie3 <= 0) {
         setGoingBack3(false);
         clearInterval(interval);
@@ -188,10 +187,9 @@ export default function Scenary1Page() {
     // INIMIGO 4
     if (posEnemie4 >= 0 && posEnemie4 <= window.innerWidth && !goingBack4) {
       setEnemie4(enemie4RunningRight);
-      console.log(posEnemie4);
       const interval = setInterval(() => {
         setPosEnemie4((prevState) => prevState + 10);
-      }, 101);
+      }, speedEnemie4);
       if (posEnemie4 >= window.innerWidth - 120) {
         setGoingBack4(true);
         clearInterval(interval);
@@ -202,10 +200,9 @@ export default function Scenary1Page() {
     // CONTROLE DE VOLTA DO INIMIGO 4
     if (posEnemie4 >= 0 && posEnemie4 <= window.innerWidth && goingBack4) {
       setEnemie4(enemie4RunningLeft);
-      console.log(posEnemie4);
       const interval = setInterval(() => {
         setPosEnemie4((prevState) => prevState - 10);
-      }, 101);
+      }, speedEnemie4);
       if (posEnemie4 <= 0) {
         setGoingBack4(false);
         clearInterval(interval);
@@ -246,7 +243,7 @@ export default function Scenary1Page() {
               left: posEnemie3,
             }}
           />
-          
+
           <img
             className="enemie4"
             src={enemie4}
@@ -254,9 +251,6 @@ export default function Scenary1Page() {
               left: posEnemie4,
             }}
           />
-        </div>
-        <div className="containerPlayer">
-          <img className="playerGif" src={player} alt="" />
         </div>
       </div>
     </div>

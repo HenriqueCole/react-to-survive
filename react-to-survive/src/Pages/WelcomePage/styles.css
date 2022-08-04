@@ -31,11 +31,13 @@
 }
 
 .h1WelcomeTo {
+  color: #fff;
   margin-bottom: 26px;
   margin-top: 11px;
 }
 
 .h1GameName {
+  color: #fff;
   font-size: 44px;
 }
 
