@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 import song from "../../music/game-music.mp3";
 
-import NewArrom from "../../components/arrow";
+import NewArrow from "../../components/arrow";
 
 import playerStopLeft from "../../assets/Players/Player1-stopped-left.gif";
 import playerStopRight from "../../assets/Players/Player1-stopped-right.gif";
@@ -44,7 +44,7 @@ export default function Scenary1Page() {
 
   //PLAYER
   const [playerStyle, setPlayerStyle] = useState(playerStopRight);
-  const [playerPosition, setPlayerPosition] = useState(10);
+  const [playerPosition, setPlayerPosition] = useState(40);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown, true);
@@ -54,6 +54,7 @@ export default function Scenary1Page() {
   const handleKeyDown = e => {
 
     if (e.key === "ArrowLeft") {
+      console.log(playerPosition);
       setPlayerStyle(playerRunningLeft);
       setPlayerPosition(prevState => (
         prevState - 8
@@ -232,7 +233,7 @@ export default function Scenary1Page() {
 
   const getArrows = (shooter) => {
     const random = Math.floor(Math.random() * 1000 + 1);
-    console.log(shooter,random)
+    // console.log(shooter,random)
     if (random > 995) {
         setArrowList(prevState => [...prevState, <NewArrow shooter={shooter}/>]);
     }
@@ -244,7 +245,7 @@ export default function Scenary1Page() {
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={backgroundImg} alt="" />
         <div className="containerEnemies">
-          {getArrows()}
+          {getArrows(posEnemie1)}
           <img
             className="enemie1"
             src={enemie1}

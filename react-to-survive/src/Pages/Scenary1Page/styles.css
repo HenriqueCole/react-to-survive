@@ -15,23 +15,21 @@
 #player1 {
   position: absolute;
   bottom: 15px;
-  width: 100px;
-  height: 100px;
+  width: 90px;
   text-align: center;
 }
 
 .enemie1 {
   position: absolute;
-  top: 120px;
+  top: 170px;
   left: 35px;
-  width: 100px;
-  height: 100px;
+  width: 90px;
   text-align: center;
   transition: 0.1s;
 }
 .enemie2 {
   position: absolute;
-  top: 205px;
+  top: 170px;
   left: 170px;
   width: 100px;
   height: 100px;
@@ -40,7 +38,7 @@
 }
 .enemie3 {
   position: absolute;
-  top: 205px;
+  top: 170px;
   left: 305px;
   width: 100px;
   height: 100px;
@@ -49,7 +47,7 @@
 }
 .enemie4 {
   position: absolute;
-  top: 205px;
+  top: 170px;
   left: 440px;
   width: 100px;
   height: 100px;
