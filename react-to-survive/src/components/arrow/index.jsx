@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 export default function NewArrow({shooter}) {
 
-    const [arrowTop, setArrowTop] = useState(120);
+    const [arrowTop, setArrowTop] = useState(180);
     const [isActive, setIsActive] = useState(true);
 
     useEffect(() => {

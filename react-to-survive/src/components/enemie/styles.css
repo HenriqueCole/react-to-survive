@@ -1,0 +1,8 @@
+.enemie1 {
+    position: absolute;
+    top: 170px;
+    left: 35px;
+    width: 90px;
+    text-align: center;
+    transition: 0.1s;
+  }

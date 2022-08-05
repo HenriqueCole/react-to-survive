@@ -17,10 +17,7 @@ import playerDead from "../../assets/Players/Player1-dead.gif";
 import playerRunningLeft from "../../assets/Players/Player1-left.gif";
 import playerRunningRight from "../../assets/Players/Player1-right.gif";
 
-import enemie1StopLeft from "../../assets/Enemie1/enemie1-stopped-left.gif";
-import enemie1StopRight from "../../assets/Enemie1/enemie1-stopped-right.gif";
-import enemie1RunningLeft from "../../assets/Enemie1/enemie1-left.gif";
-import enemie1RunningRight from "../../assets/Enemie1/enemie1-right.gif";
+import Enemie from "../../components/enemie";
 
 import enemie2StopLeft from "../../assets/Enemie1/enemie1-stopped-left.gif";
 import enemie2StopRight from "../../assets/Enemie1/enemie1-stopped-right.gif";
@@ -54,7 +51,6 @@ export default function Scenary1Page() {
   const handleKeyDown = e => {
 
     if (e.key === "ArrowLeft") {
-      console.log(playerPosition);
       setPlayerStyle(playerRunningLeft);
       setPlayerPosition(prevState => (
         prevState - 8
@@ -79,9 +75,6 @@ export default function Scenary1Page() {
   }
 
   //Inimigos
-  const [enemie1, setEnemie1] = useState(enemie1StopRight);
-  const [posEnemie1, setPosEnemie1] = useState(100);
-  const [speedEnemie1, setSpeedEnemie1] = useState(60);
   const [enemie2, setEnemie2] = useState(enemie2StopRight);
   const [posEnemie2, setPosEnemie2] = useState(300);
   const [speedEnemie2, setSpeedEnemie2] = useState(75);
@@ -106,39 +99,7 @@ export default function Scenary1Page() {
   const [arrowList, setArrowList] = useState([]);
 
 
-  useEffect(() => {
-    // CONTROLE DE IDA DO INIMIGO 1
-    // INIMIGO 1
-
-    if (posEnemie1 >= 0 && posEnemie1 <= window.innerWidth && !goingBack1) {
-      setEnemie1(enemie1RunningRight);
-      const interval = setInterval(() => {
-        setPosEnemie1((prevState) => prevState + 10);
-      }, speedEnemie1);
-      if (posEnemie1 >= window.innerWidth - 120) {
-        setGoingBack1(true);
-        clearInterval(interval);
-      }
-      return () => clearInterval(interval);
-    }
-    // CONTROLE DE VOLTA DO INIMIGO 1
-    if (posEnemie1 >= 0 && posEnemie1 <= window.innerWidth && goingBack1) {
-
-      setEnemie1(enemie1RunningLeft);
-
-      const interval = setInterval(() => {
-        setPosEnemie1((prevState) => prevState - 10);
-      }, speedEnemie1);
-
-      if (posEnemie1 <= 0) {
-        setGoingBack1(false);
-        clearInterval(interval);
-      }
-
-      return () => clearInterval(interval);
-    }
-
-  }, [posEnemie1, goingBack1]);
+ 
 
  
 
@@ -245,14 +206,8 @@ export default function Scenary1Page() {
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={backgroundImg} alt="" />
         <div className="containerEnemies">
-          {getArrows(posEnemie1)}
-          <img
-            className="enemie1"
-            src={enemie1}
-            style={{
-              left: posEnemie1,
-            }}
-          />
+          <Enemie initalPos={300} propEnemySpeed={75}/>
+          <Enemie initalPos={100} propEnemySpeed={60}/>
           {/* <img
             className="enemie2"
             src={enemie2}
