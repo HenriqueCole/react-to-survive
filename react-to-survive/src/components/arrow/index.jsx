@@ -11,12 +11,11 @@ export default function NewArrow({shooter}) {
     useEffect(() => {
         const arrowThrowSpeed = setInterval(() => {
             setArrowTop(prevState => prevState + 1);
-        }, 5);
+        }, 1);
 
         // console.log(arrowTop);
 
-
-        if(arrowTop >= 736){
+        if(arrowTop >= window.innerHeight - 50) {
             clearInterval(arrowThrowSpeed);
             setTimeout(() => {
                 setIsActive(false);

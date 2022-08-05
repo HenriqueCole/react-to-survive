@@ -1,4 +1,4 @@
-import backgroundImg from "../../assets/Scenaries/scenary1.gif";
+import backgroundImg from "../../assets/Scenaries/scenary3.png";
 
 import { Link } from "react-router-dom";
 
@@ -8,8 +8,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import song from "../../music/game-music.mp3";
-import deadSong from '../../music/dead.mp3';
-import throwArrow from '../../music/throw-arrow.mp3';
+import deadSong from "../../music/dead.mp3";
+import throwArrow from "../../music/throw-arrow.mp3";
 
 import NewArrow from "../../components/arrow";
 
@@ -19,7 +19,10 @@ import playerDead from "../../assets/Players/Player1-dead.gif";
 import playerRunningLeft from "../../assets/Players/Player1-left.gif";
 import playerRunningRight from "../../assets/Players/Player1-right.gif";
 
-import Enemie from "../../components/enemie";
+import enemie1StopLeft from "../../assets/Enemie1/enemie1-stopped-left.gif";
+import enemie1StopRight from "../../assets/Enemie1/enemie1-stopped-right.gif";
+import enemie1RunningLeft from "../../assets/Enemie1/enemie1-left.gif";
+import enemie1RunningRight from "../../assets/Enemie1/enemie1-right.gif";
 
 import enemie2StopLeft from "../../assets/Enemie1/enemie1-stopped-left.gif";
 import enemie2StopRight from "../../assets/Enemie1/enemie1-stopped-right.gif";
@@ -36,11 +39,9 @@ import enemie4StopRight from "../../assets/Enemie1/enemie1-stopped-right.gif";
 import enemie4RunningLeft from "../../assets/Enemie1/enemie1-left.gif";
 import enemie4RunningRight from "../../assets/Enemie1/enemie1-right.gif";
 
-
 import "./styles.css";
 
 export default function Scenary1Page() {
-
   //PLAYER
   const [playerStyle, setPlayerStyle] = useState(playerStopRight);
   const [playerPosition, setPlayerPosition] = useState(40);
@@ -50,33 +51,31 @@ export default function Scenary1Page() {
     document.addEventListener("keyup", handleKeyUp, true);
   }, []);
 
-  const handleKeyDown = e => {
-
+  const handleKeyDown = (e) => {
     if (e.key === "ArrowLeft") {
+      console.log(playerPosition);
       setPlayerStyle(playerRunningLeft);
-      setPlayerPosition(prevState => (
-        prevState - 8
-      ));
+      setPlayerPosition((prevState) => prevState - 8);
     }
     if (e.key === "ArrowRight") {
       setPlayerStyle(playerRunningRight);
-      setPlayerPosition(prevState => (
-        prevState + 8
-      ));
+      setPlayerPosition((prevState) => prevState + 8);
     }
   };
 
-
-  const handleKeyUp = e => {
+  const handleKeyUp = (e) => {
     if (e.key === "ArrowLeft") {
       setPlayerStyle(playerStopLeft);
     }
     if (e.key === "ArrowRight") {
       setPlayerStyle(playerStopRight);
     }
-  }
+  };
 
   //Inimigos
+  const [enemie1, setEnemie1] = useState(enemie1StopRight);
+  const [posEnemie1, setPosEnemie1] = useState(100);
+  const [speedEnemie1, setSpeedEnemie1] = useState(60);
   const [enemie2, setEnemie2] = useState(enemie2StopRight);
   const [posEnemie2, setPosEnemie2] = useState(300);
   const [speedEnemie2, setSpeedEnemie2] = useState(75);
@@ -100,10 +99,37 @@ export default function Scenary1Page() {
   // Lista de flechas
   const [arrowList, setArrowList] = useState([]);
 
+  useEffect(() => {
+    // CONTROLE DE IDA DO INIMIGO 1
+    // INIMIGO 1
 
- 
+    if (posEnemie1 >= 0 && posEnemie1 <= window.innerWidth && !goingBack1) {
+      setEnemie1(enemie1RunningRight);
+      const interval = setInterval(() => {
+        setPosEnemie1((prevState) => prevState + 10);
+      }, speedEnemie1);
+      if (posEnemie1 >= window.innerWidth - 120) {
+        setGoingBack1(true);
+        clearInterval(interval);
+      }
+      return () => clearInterval(interval);
+    }
+    // CONTROLE DE VOLTA DO INIMIGO 1
+    if (posEnemie1 >= 0 && posEnemie1 <= window.innerWidth && goingBack1) {
+      setEnemie1(enemie1RunningLeft);
 
- 
+      const interval = setInterval(() => {
+        setPosEnemie1((prevState) => prevState - 10);
+      }, speedEnemie1);
+
+      if (posEnemie1 <= 0) {
+        setGoingBack1(false);
+        clearInterval(interval);
+      }
+
+      return () => clearInterval(interval);
+    }
+  }, [posEnemie1, goingBack1]);
 
   useEffect(() => {
     // CONTROLE DE IDA INIMIGO 2
@@ -198,21 +224,54 @@ export default function Scenary1Page() {
     const random = Math.floor(Math.random() * 1000 + 1);
     // console.log(shooter,random)
     if (random > 995) {
-        setArrowList(prevState => [...prevState, <NewArrow shooter={shooter}/>]);
+      setArrowList((prevState) => [
+        ...prevState,
+        <NewArrow shooter={shooter} />,
+      ]);
     }
-    return arrowList.map(arr => arr);
-  }
+    return arrowList.map((arr) => arr);
+  };
 
   return (
-    <div className="Scenary1PageContainer" onKeyDown={(e) => handleKeySide(e)}>
+    <div className="Scenary3PageContainer" onKeyDown={(e) => handleKeySide(e)}>
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={backgroundImg} alt="" />
         <div className="containerEnemies">
-        <Enemie initalPos={100} propEnemySpeed={60} />
+          {getArrows(posEnemie1)}
+          <img
+            className="enemie1"
+            src={enemie1}
+            style={{
+              left: posEnemie1,
+            }}
+          />
+          <img
+            className="enemie2"
+            src={enemie2}
+            style={{
+              left: posEnemie2,
+            }}
+          />
           <img
             id="player1"
             src={playerStyle}
             style={{ left: playerPosition }}
+          />
+
+          <img
+            className="enemie3"
+            src={enemie3}
+            style={{
+              left: posEnemie3,
+            }}
+          />
+
+          <img
+            className="enemie4"
+            src={enemie4}
+            style={{
+              left: posEnemie4,
+            }}
           />
         </div>
       </div>
