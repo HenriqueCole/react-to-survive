@@ -8,8 +8,10 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import song from "../../music/game-music.mp3";
+import deadSong from '../../music/dead.mp3';
+import throwArrow from '../../music/throw-arrow.mp3';
 
-import NewArrom from "../../components/arrow";
+import NewArrow from "../../components/arrow";
 
 import playerStopLeft from "../../assets/Players/Player1-stopped-left.gif";
 import playerStopRight from "../../assets/Players/Player1-stopped-right.gif";
@@ -252,20 +254,20 @@ export default function Scenary1Page() {
               left: posEnemie1,
             }}
           />
-          {/* <img
+          <img
             className="enemie2"
             src={enemie2}
             style={{
               left: posEnemie2,
             }}
-          /> */}
+          />
           <img
             id="player1"
             src={playerStyle}
             style={{ left: playerPosition }}
           />
 
-          {/* <img
+          <img
             className="enemie3"
             src={enemie3}
             style={{
@@ -279,7 +281,7 @@ export default function Scenary1Page() {
             style={{
               left: posEnemie4,
             }}
-          /> */}
+          />
         </div>
       </div>
     </div>
