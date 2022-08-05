@@ -12,7 +12,6 @@ import deadSong from "../../music/dead.mp3";
 import throwArrow from "../../music/throw-arrow.mp3";
 
 import NewArrow from "../../components/arrow";
-import Bubbles from "../../components/bubbles";
 
 import playerStopLeft from "../../assets/Players/Player1-stopped-left.gif";
 import playerStopRight from "../../assets/Players/Player1-stopped-right.gif";
@@ -237,7 +236,6 @@ export default function Scenary1Page() {
     <div className="Scenary2PageContainer" onKeyDown={(e) => handleKeySide(e)}>
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={backgroundImg} alt="" />
-        <Bubbles />
         <div className="containerEnemies">
           {getArrows(posEnemie1)}
           <img
