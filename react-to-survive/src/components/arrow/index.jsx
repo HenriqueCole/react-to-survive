@@ -3,7 +3,7 @@ import './styles.css'
 import arrow from "../../assets/Weapons/arrow.png"
 import { useEffect, useState } from 'react';
 
-export default function NewArrow({shooter}) {
+export default function NewArrow({shooter, arrowSpeed, removeFromArrowList}) {
 
     const [arrowTop, setArrowTop] = useState(180);
     const [isActive, setIsActive] = useState(true);
@@ -11,11 +11,11 @@ export default function NewArrow({shooter}) {
     useEffect(() => {
         const arrowThrowSpeed = setInterval(() => {
             setArrowTop(prevState => prevState + 1);
-        }, 1);
+        }, arrowSpeed);
 
         // console.log(arrowTop);
 
-        if(arrowTop >= window.innerHeight - 50) {
+        if(arrowTop >= window.innerHeight - 46) {
             clearInterval(arrowThrowSpeed);
             setTimeout(() => {
                 setIsActive(false);
@@ -23,6 +23,7 @@ export default function NewArrow({shooter}) {
         }
 
         return () => clearInterval(arrowThrowSpeed);
+        
     }, [arrowTop, isActive])
 
 
