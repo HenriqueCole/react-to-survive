@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Press Start 2P", cursive;
+}
+
+.backgroundImage {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+
+.containerTextScreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
+.containerActionsText {
+  display: grid;
+  grid-gap: 22px;
+  margin-top: 15rem;
+}
+
+.h1WelcomeTo {
+  color: #fff;
+  margin-bottom: 26px;
+  margin-top: 11px;
+}
+
+.h1GameName {
+  color: #fff;
+  font-size: 44px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+a:hover {
+  font-size: 40px;
+  color: #14235e;
+}
+
+@media screen and (max-width: 600px) {
+  .containerTextScreen {
+    width: 100%;
+    text-align: center;
+  }
+
+  .containerActionsText {
+    margin-top: 10rem;
+  }
+
+  .h1WelcomeTo {
+    margin-bottom: 26px;
+    margin-top: 15px;
+  }
+
+  .h1GameName {
+    font-size: 40px;
+  }
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.2s;
+  cursor: pointer;
+  outline: none;
+}
+button:hover{
+  color: #b4b4b4;
+}

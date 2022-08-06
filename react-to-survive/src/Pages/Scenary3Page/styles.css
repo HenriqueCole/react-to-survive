@@ -1,0 +1,79 @@
+.arrow{
+  position: absolute;
+  width: 30px;
+  
+}
+
+.backgroundImage {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+
+#player1 {
+  position: absolute;
+  bottom: 15px;
+  width: 90px;
+  text-align: center;
+}
+
+.enemie1 {
+  position: absolute;
+  top: 170px;
+  left: 35px;
+  width: 90px;
+  text-align: center;
+  transition: 0.1s;
+}
+.enemie2 {
+  position: absolute;
+  top: 170px;
+  left: 170px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  transition: 0.1s;
+}
+.enemie3 {
+  position: absolute;
+  top: 170px;
+  left: 305px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  transition: 0.1s;
+}
+.enemie4 {
+  position: absolute;
+  top: 170px;
+  left: 440px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  transition: 0.1s;
+}
+
+@media screen and (max-width: 600px) {
+  .enemie1 {
+    left: 10px;
+  }
+  .enemie2 {
+    left: 10px;
+  }
+  .enemie3 {
+    left: 10px;
+  }
+  .enemie4 {
+    left: 10px;
+  }
+
+  .playerGif {
+    left: 10px;
+  }
+
+  .backgroundImage {
+    height: 100vh;
+  }
+}
