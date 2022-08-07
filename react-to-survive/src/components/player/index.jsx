@@ -20,7 +20,7 @@ export default function Player() {
 
 
     useEffect(() => {
-        console.log("UseEffect", playerPosition)
+        
         if (!isStarted) {
             document.addEventListener("keydown", handleKeyDown, true);
             document.addEventListener("keyup", handleKeyUp, true);
@@ -35,12 +35,14 @@ export default function Player() {
 
 
     const handleKeyDown = (e) => {
-        console.log("Keydown", window.playerPosition);
-        if (window.playerPosition >= 40 && window.playerPosition < window.innerWidth - 50) {
+
+        if (window.playerPosition >= 30) {
             if (e.key === "ArrowLeft") {
                 setPlayerStyle(playerRunningLeft);
                 setPlayerPosition(window.playerPosition - 8);
             }
+        }
+        if(window.playerPosition < window.innerWidth - 120){
             if (e.key === "ArrowRight") {
                 setPlayerStyle(playerRunningRight);
                 setPlayerPosition(window.playerPosition + 8);
