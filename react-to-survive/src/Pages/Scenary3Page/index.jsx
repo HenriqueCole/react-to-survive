@@ -2,6 +2,8 @@ import backgroundImg from "../../assets/Scenaries/scenary3.png";
 
 import { Link } from "react-router-dom";
 
+import Timer from "../../components/timer";
+
 import useSound from "use-sound";
 import { useState, useEffect } from "react";
 
@@ -236,6 +238,7 @@ export default function Scenary1Page() {
     <div className="Scenary3PageContainer" onKeyDown={(e) => handleKeySide(e)}>
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={backgroundImg} alt="" />
+        <Timer />
         <div className="containerEnemies">
           {getArrows(posEnemie1)}
           <img
