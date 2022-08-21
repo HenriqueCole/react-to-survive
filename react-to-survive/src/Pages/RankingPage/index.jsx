@@ -29,6 +29,8 @@ const useAudio = (url) => {
   return [playing, toggle];
 };
 
+import Rank from "../../components/rank";
+
 export default function WelcomePage() {
   const [isPlaying, toggle] = useAudio(song);
 
@@ -39,17 +41,11 @@ export default function WelcomePage() {
           <img className="backgroundImage" src={backgroundImg} alt="" />
           <div className="containerTextScreen">
             <div className="containerWelcomeText">
-              <h1 className="h1WelcomeTo">Welcome to</h1>
-              <h1 className="h1GameName">React To Survive</h1>
+              <h1 className="h1GameName">Ranking</h1>
             </div>
-            <div className="containerActionsText">
-              <Link to="/phase-one">Play!</Link>
-              <Link to="/ranking">Ranking</Link>
-              <Link to="#">Leave</Link>
-              <button onClick={toggle}>
-                {isPlaying ? "Music on" : "Music off"}
-              </button>
-            </div>
+          </div>
+          <div className="containerRank">
+            <Rank />
           </div>
         </div>
       </body>

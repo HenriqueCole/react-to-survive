@@ -17,7 +17,7 @@
 
 .containerTextScreen {
   position: absolute;
-  top: 50%;
+  top: 22%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -86,4 +86,12 @@ button {
 }
 button:hover {
   color: #b4b4b4;
+}
+
+.containerRank {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  text-align: center;
 }
