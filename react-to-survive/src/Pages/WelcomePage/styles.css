@@ -47,6 +47,7 @@ a {
   font-size: 35px;
   font-weight: bold;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 a:hover {
@@ -86,4 +87,20 @@ button {
 }
 button:hover {
   color: #b4b4b4;
+}
+
+.usernameInput {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #14235e;
+  padding: 10px;
+  margin-bottom: 10px;
 }
