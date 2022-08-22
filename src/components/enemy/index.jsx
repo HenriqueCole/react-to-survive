@@ -15,8 +15,11 @@ export default function Enemy({ initalPos, propEnemySpeed, arrowFrequency, arrow
   const [enemySpeed, setEnemySpeed] = useState(propEnemySpeed);
 
   const [arrowsList, setArrowsList] = useState([]);
-  const [arrowCount, setArrowCount] = useState(0);
   const [goingForward, setGoingForward] = useState(isStartingForward);
+
+  useEffect(() => {
+    document.querySelector("img").ondragstart = () => (false);
+  },[])
 
   useEffect(() => {
     // CONTROLE DE IDA DO INIMIGO 1

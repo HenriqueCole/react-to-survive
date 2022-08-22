@@ -20,6 +20,10 @@ const useAudio = (url) => {
   }, [playing]);
 
   useEffect(() => {
+    document.querySelector("img").ondragstart = () => (false);
+  },[])
+
+  useEffect(() => {
     audio.addEventListener("ended", () => setPlaying(false));
     return () => {
       audio.removeEventListener("ended", () => setPlaying(false));

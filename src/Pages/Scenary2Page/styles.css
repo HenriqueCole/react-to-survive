@@ -1,9 +1,3 @@
-.arrow{
-  position: absolute;
-  width: 30px;
-  
-}
-
 .backgroundImage {
   background-size: cover;
   background-position: center;
@@ -53,6 +47,14 @@
   height: 100px;
   text-align: center;
   transition: 0.1s;
+}
+
+.bubblesGif {
+  position: absolute;
+  left: 64px;
+  z-index: 1;
+  height: 5rem;
+  bottom: 50px;
 }
 
 @media screen and (max-width: 600px) {

@@ -48,6 +48,10 @@ const notify = () => toast.error("Please enter an username");
 export default function WelcomePage() {
   const [isPlaying, toggle] = useAudio(song);
 
+  useEffect(() => {
+    document.querySelector("img").ondragstart = () => (false);
+  },[])
+
   return (
     <div className="WelcomePageContainer">
       <body>

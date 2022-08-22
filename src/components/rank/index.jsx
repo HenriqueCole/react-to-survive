@@ -13,21 +13,11 @@ export default function DarkExample() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Otto</td>
-          <td>00:12:25</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Otto</td>
-          <td>00:12:25</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Otto</td>
-          <td>00:12:25</td>
-        </tr>
+        {localStorage.getItem("rankingScore").map(user => (
+          <tr>
+            <td></td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );

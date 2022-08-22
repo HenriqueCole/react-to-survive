@@ -15,7 +15,6 @@ export default function Player() {
     const [playerStyle, setPlayerStyle] = useState(playerStopRight);
     const [playerPosition, setPlayerPosition] = useState(40);
     const [isStarted, setIsStarted] = useState(false);
-    // const playerPositionMemo = useMemo(() => playerPosition, [playerPosition]);
 
 
 
