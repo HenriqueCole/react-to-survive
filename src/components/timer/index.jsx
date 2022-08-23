@@ -21,13 +21,15 @@ export default function Timer() {
           hour++;
           minute = 0;
         }
-        return (
+        const newTime = (
           (hour < 10 ? "0" + hour : hour) +
           ":" +
           (minute < 10 ? "0" + minute : minute) +
           ":" +
           (second < 10 ? "0" + second : second)
-        );
+          );
+          window.timer = newTime;
+        return newTime
       });
     }, 1000);
     return () => clearInterval(interval);

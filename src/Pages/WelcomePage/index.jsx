@@ -49,6 +49,9 @@ export default function WelcomePage() {
   const [isPlaying, toggle] = useAudio(song);
 
   useEffect(() => {
+    if(!JSON.parse(localStorage.getItem("usersRanking"))){
+      localStorage.setItem("usersRanking", JSON.stringify([]));
+    }
     document.querySelector("img").ondragstart = () => (false);
   },[])
 

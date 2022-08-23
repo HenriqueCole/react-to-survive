@@ -1,3 +1,12 @@
 Table {
   color: white;
 }
+
+.containerRank button{
+  padding-bottom: 5px;
+}
+
+th,td{
+  padding: 5px 50px;
+}
+
