@@ -2,9 +2,7 @@ import backgroundImg from "../../assets/Scenaries/scenary1.gif";
 
 import toast, { Toaster } from "react-hot-toast";
 
-import { Link } from "react-router-dom";
-
-import useSound from "use-sound";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import song from "../../music/game-music.mp3";
@@ -35,7 +33,7 @@ function check() {
   if (document.querySelector(".usernameInput").value == "") {
     notify();
   } else {
-    window.location.href = "/phase-one";
+    window.location.href = "/phases";
   }
   localStorage.setItem(
     "username",

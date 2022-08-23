@@ -11,8 +11,8 @@ export default function NewArrow({ shooter, arrowSpeed }) {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
 
+    useEffect(() => {
         const arrowThrowSpeed = setInterval(() => {
             setArrowTop(prevState => prevState + 1);
         }, arrowSpeed);
@@ -20,7 +20,7 @@ export default function NewArrow({ shooter, arrowSpeed }) {
         if (arrowTop >= window.innerHeight - 56 && isActive) {
 
             const rank = JSON.parse(localStorage.getItem("usersRanking"));
-            rank.push({name: localStorage.getItem("username"), time: window.timer})
+            rank.push({ name: localStorage.getItem("username"), time: window.timer })
             localStorage.setItem("usersRanking", JSON.stringify(rank));
             alert("Você perdeu!");
             navigate("/ranking");
