@@ -3,6 +3,7 @@ import './styles.css'
 import arrow from "../../assets/Weapons/arrow.png"
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from "react-hot-toast";
 
 export default function NewArrow({ shooter, arrowSpeed }) {
 
@@ -10,6 +11,16 @@ export default function NewArrow({ shooter, arrowSpeed }) {
     const [isActive, setIsActive] = useState(true);
 
     const navigate = useNavigate();
+
+    function notifyLooser() {
+        if (isActive) {
+          toast.error("You loose");
+          setIsActive(false);
+        }
+        setTimeout(() => {
+          navigate("/ranking");
+        }, 2000);
+      }
 
 
     useEffect(() => {
@@ -22,8 +33,8 @@ export default function NewArrow({ shooter, arrowSpeed }) {
             const rank = JSON.parse(localStorage.getItem("usersRanking"));
             rank.push({ name: localStorage.getItem("username"), time: window.timer })
             localStorage.setItem("usersRanking", JSON.stringify(rank));
-            alert("Você perdeu!");
-            navigate("/ranking");
+            // alert("Você perdeu!");
+            notifyLooser();
         }
 
         return () => clearInterval(arrowThrowSpeed);
@@ -32,6 +43,9 @@ export default function NewArrow({ shooter, arrowSpeed }) {
 
 
     return (
-        isActive && <img className="arrow" src={arrow} style={{ left: Math.ceil(shooter), top: arrowTop }} onClick={() => setIsActive(false)} />
+        <>
+            <Toaster/>
+            {isActive && <img className="arrow" src={arrow} style={{ left: Math.ceil(shooter), top: arrowTop }} onClick={() => setIsActive(false)} />}
+        </>
     )
 }
