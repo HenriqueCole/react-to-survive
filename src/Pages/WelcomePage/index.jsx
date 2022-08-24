@@ -30,31 +30,43 @@ const useAudio = (url) => {
   return [playing, toggle];
 };
 
-function check() {
-  if (document.querySelector(".usernameInput").value == "") {
-    notify();
-  } else {
-    window.location.href = "/phases";
-  }
-  localStorage.setItem(
-    "username",
-    document.querySelector(".usernameInput").value
-  );
-}
 
 const notify = () => toast.error("Please enter an username");
 
 export default function WelcomePage() {
 
 
+  const [check, setCheck] = useState(false);
+  const navigate = useNavigate();
+
+  function checkUser() {
+    if (document.querySelector(".usernameInput").value == "") {
+      setCheck(false);
+    } else {
+      setCheck(true);
+    }
+  }
+
+  useEffect(() => {
+    if (!check) {
+      notify();
+    } else {
+      localStorage.setItem(
+        "username",
+        document.querySelector(".usernameInput").value);
+      navigate("/phases");
+    }
+  }, [check])
+
+
   const moveCursor = (e) => {
-    document.querySelector(".cursorImg").style.top = `${e.clientY-45}px`;
-    document.querySelector(".cursorImg").style.left = `${e.clientX-55}px`;
+    document.querySelector(".cursorImg").style.top = `${e.clientY - 45}px`;
+    document.querySelector(".cursorImg").style.left = `${e.clientX - 55}px`;
   }
 
   useEffect(() => {
     document.addEventListener("mousemove", moveCursor);
-  },[])
+  }, [])
 
   const [isPlaying, toggle] = useAudio(song);
 
@@ -101,7 +113,7 @@ export default function WelcomePage() {
               />
             </div>
             <div className="containerActionsText">
-              <a onClick={check}>Play!</a>
+              <a onClick={checkUser}>Play!</a>
               <Link to="/ranking">Ranking</Link>
               <button className="exit" onClick={closeTab}>
                 Leave
