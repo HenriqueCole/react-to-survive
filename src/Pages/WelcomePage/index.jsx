@@ -19,10 +19,8 @@ const useAudio = (url) => {
   useEffect(() => {
     if(playing){
       audio.play();
-      localStorage.setItem("song", 1);
     } else {
       audio.pause();
-      localStorage.setItem("song", 0);
     }
     
   }, [playing]);
