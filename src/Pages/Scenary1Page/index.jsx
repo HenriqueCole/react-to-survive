@@ -36,7 +36,7 @@ export default function Scenary1Page() {
   }, [])
 
   useEffect(() => {
-    if(gameOver == false){
+    if(gameOver == true){
       setPlaying(false);
     }
   },[gameOver])
