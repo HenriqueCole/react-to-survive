@@ -13,13 +13,30 @@ import cursorImg from "../../assets/mainCharacter.png"
 export default function Scenary1Page() {
   const [timer, setTimer] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [clientY, setClientY] = useState(0);
+  const [clientX, setClientX] = useState(0);
+
+  const [audio] = useState(new Audio(url));
+  const [playing, setPlaying] = useState(true);
+
+  useEffect(() => {
+    playing ? audio.play() : audio.pause();
+  }, [playing]);
+
+  useEffect(() => {
+    audio.addEventListener("ended", () => setPlaying(false));
+    return () => {
+      audio.removeEventListener("ended", () => setPlaying(false));
+    };
+  }, []);
+
 
   useEffect(() => {
     document.querySelector("img").ondragstart = () => (false);
   }, [])
 
   useEffect(() => {
-    if(gameOver == true){
+    if(gameOver == false){
       setPlaying(false);
     }
   },[gameOver])
@@ -35,6 +52,8 @@ export default function Scenary1Page() {
   const moveCursor = (e) => {
     document.querySelector(".cursorImg").style.top = `${e.clientY - 45}px`;
     document.querySelector(".cursorImg").style.left = `${e.clientX - 55}px`;
+    setClientX(e.clientX - 55);
+    setClientY(e.clientY - 45);
   }
 
   useEffect(() => {

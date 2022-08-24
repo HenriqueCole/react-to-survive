@@ -13,14 +13,6 @@ export default function NewArrow({ shooter, arrowSpeed, overGame, client}) {
     const navigate = useNavigate();
 
     const explodeArrow = () => {
-        // const explosion = document.createElement("p");
-        // explosion.innerText = "Explodiu!!";
-        // explosion.style.left = shooter;
-        // explosion.style.position = "absolute";
-        // explosion.style.zIndex = "2";
-        // explosion.style.color = "#ffff";
-
-        // document.body.appendChild(explosion);
         setIsActive(false);
     }
 
