@@ -29,7 +29,6 @@ export default function NewArrow({ shooter, arrowSpeed }) {
         }, arrowSpeed);
 
         if (arrowTop >= window.innerHeight - 56 && isActive) {
-
             const rank = JSON.parse(localStorage.getItem("usersRanking"));
             rank.push({ name: localStorage.getItem("username"), time: window.timer })
             localStorage.setItem("usersRanking", JSON.stringify(rank));

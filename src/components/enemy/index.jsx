@@ -8,7 +8,7 @@ import enemie1StopRight from "../../assets/Enemie1/enemie1-stopped-right.gif";
 import enemie1RunningLeft from "../../assets/Enemie1/enemie1-left.gif";
 import enemie1RunningRight from "../../assets/Enemie1/enemie1-right.gif";
 
-export default function Enemy({ initalPos, propEnemySpeed, arrowFrequency, arrowSpeed, isStartingForward }) {
+export default function Enemy({ initalPos, propEnemySpeed, arrowFrequency, arrowSpeed, isStartingForward, timer}) {
 
   const [enemy, setEnemy] = useState(enemie1StopRight);
   const [enemyPosition, setEnemyPosition] = useState(initalPos);
@@ -80,13 +80,12 @@ export default function Enemy({ initalPos, propEnemySpeed, arrowFrequency, arrow
   const [isThrow, setIsThrow] = useState(false);
 
   useEffect(() => {
-
     const interval = setInterval(() => {
       setIsThrow(true);
     }, arrowFrequency)
 
     if (isThrow === false) return () => clearInterval(interval);
-    setArrowsList((prevState) => [...prevState, <NewArrow shooter={enemyPosition + 25} arrowSpeed={arrowSpeed} />]);
+    setArrowsList((prevState) => [...prevState, <NewArrow shooter={enemyPosition + 25} arrowSpeed={arrowSpeed-(timer/50)} />]);
     setIsThrow(false);
 
     return () => clearInterval(interval);
