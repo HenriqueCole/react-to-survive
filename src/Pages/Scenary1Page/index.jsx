@@ -20,7 +20,11 @@ export default function Scenary1Page() {
   const [playing, setPlaying] = useState(true);
 
   useEffect(() => {
-    playing ? audio.play() : audio.pause();
+    if(localStorage.getItem('song') == 1){
+      audio.play();
+    } else {
+      audio.pause();
+    }
   }, [playing]);
 
   useEffect(() => {

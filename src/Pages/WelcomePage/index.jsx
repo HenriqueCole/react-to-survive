@@ -17,7 +17,14 @@ const useAudio = (url) => {
   const toggle = () => setPlaying(!playing);
 
   useEffect(() => {
-    playing ? audio.play() : audio.pause();
+    if(playing){
+      audio.play();
+      localStorage.setItem("song", 1);
+    } else {
+      audio.pause();
+      localStorage.setItem("song", 0);
+    }
+    
   }, [playing]);
 
   useEffect(() => {
