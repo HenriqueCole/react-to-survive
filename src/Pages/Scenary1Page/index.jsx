@@ -14,6 +14,7 @@ export default function Scenary1Page() {
   }, [])
 
   const [timer, setTimer] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     const increaseTimer = setInterval(() => {
@@ -32,29 +33,35 @@ export default function Scenary1Page() {
           <Enemy
             initalPos={window.innerWidth * 0.1}
             propEnemySpeed={5}
-            arrowFrequency={3000}
+            arrowFrequency={1000}
             arrowSpeed={10}
             isStartingForward={true}
             timer={timer}
+            gameOver={gameOver}
+            setGameOver={setGameOver}
           />
           {timer >= 10 &&
             <Enemy
               initalPos={window.innerWidth * 0.3}
-              propEnemySpeed={6}
+              propEnemySpeed={3}
               arrowFrequency={2000}
-              arrowSpeed={8}
+              arrowSpeed={5}
               isStartingForward={false}
               timer={timer}
+              gameOver={gameOver}
+              setGameOver={setGameOver}
             />
           }
           {timer >= 20 &&
             <Enemy
               initalPos={window.innerWidth * 0.6}
               propEnemySpeed={4}
-              arrowFrequency={6000}
+              arrowFrequency={2000}
               arrowSpeed={4}
               isStartingForward={true}
               timer={timer}
+              gameOver={gameOver}
+              setGameOver={setGameOver}
             />
           }
           {timer >= 30 &&
@@ -62,9 +69,11 @@ export default function Scenary1Page() {
               initalPos={window.innerWidth * 0.7}
               propEnemySpeed={5}
               arrowFrequency={3000}
-              arrowSpeed={10}
+              arrowSpeed={7}
               isStartingForward={false}
               timer={timer}
+              gameOver={gameOver}
+              setGameOver={setGameOver}
             />
           }
           {timer >= 40 &&
@@ -75,6 +84,8 @@ export default function Scenary1Page() {
               arrowSpeed={6}
               isStartingForward={true}
               timer={timer}
+              gameOver={gameOver}
+              setGameOver={setGameOver}
             />
           }
         </div>
