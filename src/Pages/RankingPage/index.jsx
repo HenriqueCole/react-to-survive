@@ -1,7 +1,5 @@
 import backgroundImg from "../../assets/Scenaries/scenary1.gif";
 
-import song from "../../music/game-music.mp3";
-
 import "./styles.css";
 
 import Rank from "../../components/rank";

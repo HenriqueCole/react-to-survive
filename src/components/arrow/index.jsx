@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from "react-hot-toast";
 
-export default function NewArrow({ shooter, arrowSpeed, overGame}) {
+export default function NewArrow({ shooter, arrowSpeed, overGame, client}) {
 
     const [arrowTop, setArrowTop] = useState(180);
     const [isActive, setIsActive] = useState(true);
@@ -13,9 +13,18 @@ export default function NewArrow({ shooter, arrowSpeed, overGame}) {
     const navigate = useNavigate();
 
     const explodeArrow = () => {
-        
+        // const explosion = document.createElement("p");
+        // explosion.innerText = "Explodiu!!";
+        // explosion.style.left = shooter;
+        // explosion.style.position = "absolute";
+        // explosion.style.zIndex = "2";
+        // explosion.style.color = "#ffff";
+
+        // document.body.appendChild(explosion);
         setIsActive(false);
     }
+
+
 
     function notifyLooser() {
         if (isActive) {

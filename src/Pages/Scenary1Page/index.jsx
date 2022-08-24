@@ -3,6 +3,7 @@ import backgroundImg2 from "../../assets/Scenaries/scenary2.png";
 import backgroundImg3 from "../../assets/Scenaries/scenary3.png";
 import "./styles.css";
 
+import url from "../../music/game-music.mp3"
 import Enemy from "../../components/enemy";
 import Timer from "../../components/timer";
 import { useEffect, useState } from "react";
@@ -10,13 +11,35 @@ import { useEffect, useState } from "react";
 import cursorImg from "../../assets/mainCharacter.png"
 
 export default function Scenary1Page() {
+  const [timer, setTimer] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [clientY, setClientY] = useState(0);
+  const [clientX, setClientX] = useState(0);
+
+  const [audio] = useState(new Audio(url));
+  const [playing, setPlaying] = useState(true);
+
+  useEffect(() => {
+    playing ? audio.play() : audio.pause();
+  }, [playing]);
+
+  useEffect(() => {
+    audio.addEventListener("ended", () => setPlaying(false));
+    return () => {
+      audio.removeEventListener("ended", () => setPlaying(false));
+    };
+  }, []);
+
 
   useEffect(() => {
     document.querySelector("img").ondragstart = () => (false);
   }, [])
 
-  const [timer, setTimer] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
+  useEffect(() => {
+    if(gameOver == true){
+      setPlaying(false);
+    }
+  },[gameOver])
 
   useEffect(() => {
     const increaseTimer = setInterval(() => {
@@ -27,17 +50,19 @@ export default function Scenary1Page() {
   }, [timer])
 
   const moveCursor = (e) => {
-    document.querySelector(".cursorImg").style.top = `${e.clientY-45}px`;
-    document.querySelector(".cursorImg").style.left = `${e.clientX-55}px`;
+    document.querySelector(".cursorImg").style.top = `${e.clientY - 45}px`;
+    document.querySelector(".cursorImg").style.left = `${e.clientX - 55}px`;
+    setClientX(e.clientX - 55);
+    setClientY(e.clientY - 45);
   }
 
   useEffect(() => {
     document.addEventListener("mousemove", moveCursor);
-  },[])
+  }, [])
 
   return (
     <div className="Scenary1PageContainer" onKeyDown={(e) => handleKeySide(e)}>
-    <img className="cursorImg" src={cursorImg} />
+      <img className="cursorImg" src={cursorImg} />
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={(timer >= 30) ? (timer >= 60) ? backgroundImg3 : backgroundImg2 : backgroundImg} alt="" />
         <Timer />
@@ -51,6 +76,7 @@ export default function Scenary1Page() {
             timer={timer}
             gameOver={gameOver}
             setGameOver={setGameOver}
+            // client={{ clientX, clientY }}
           />
           {timer >= 10 &&
             <Enemy
@@ -62,6 +88,7 @@ export default function Scenary1Page() {
               timer={timer}
               gameOver={gameOver}
               setGameOver={setGameOver}
+              // client={{ clientX, clientY }}
             />
           }
           {timer >= 20 &&
