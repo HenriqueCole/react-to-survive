@@ -12,6 +12,11 @@ export default function NewArrow({ shooter, arrowSpeed, overGame}) {
 
     const navigate = useNavigate();
 
+    const explodeArrow = () => {
+        
+        setIsActive(false);
+    }
+
     function notifyLooser() {
         if (isActive) {
           toast.error("You loose");
@@ -28,7 +33,6 @@ export default function NewArrow({ shooter, arrowSpeed, overGame}) {
             setArrowTop(prevState => prevState + 1);
         }, arrowSpeed);
 
-        console.log(isActive);
         if (arrowTop >= window.innerHeight - 56 && isActive) {
             const rank = JSON.parse(localStorage.getItem("usersRanking"));
             rank.push({ name: localStorage.getItem("username"), time: window.timer })
@@ -46,7 +50,7 @@ export default function NewArrow({ shooter, arrowSpeed, overGame}) {
     return (
         <>
             <Toaster/>
-            {isActive && <img className="arrow" src={arrow} style={{ left: Math.ceil(shooter), top: arrowTop }} onClick={() => setIsActive(false)} />}
+            {isActive && <img className="arrow" src={arrow} style={{ left: Math.ceil(shooter), top: arrowTop }} onClick={() => explodeArrow()} />}
         </>
     )
 }

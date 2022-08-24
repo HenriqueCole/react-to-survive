@@ -7,6 +7,8 @@ import Enemy from "../../components/enemy";
 import Timer from "../../components/timer";
 import { useEffect, useState } from "react";
 
+import cursorImg from "../../assets/mainCharacter.png"
+
 export default function Scenary1Page() {
 
   useEffect(() => {
@@ -24,8 +26,18 @@ export default function Scenary1Page() {
     return () => clearInterval(increaseTimer);
   }, [timer])
 
+  const moveCursor = (e) => {
+    document.querySelector(".cursorImg").style.top = `${e.clientY-45}px`;
+    document.querySelector(".cursorImg").style.left = `${e.clientX-55}px`;
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousemove", moveCursor);
+  },[])
+
   return (
     <div className="Scenary1PageContainer" onKeyDown={(e) => handleKeySide(e)}>
+    <img className="cursorImg" src={cursorImg} />
       <div className="ContainerBackgroundImage">
         <img className="backgroundImage" src={(timer >= 30) ? (timer >= 60) ? backgroundImg3 : backgroundImg2 : backgroundImg} alt="" />
         <Timer />

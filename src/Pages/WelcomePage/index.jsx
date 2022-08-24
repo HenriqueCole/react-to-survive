@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import song from "../../music/game-music.mp3";
+import cursorImg from "../../assets/mainCharacter.png"
 
 import "./styles.css";
 
@@ -44,6 +45,17 @@ function check() {
 const notify = () => toast.error("Please enter an username");
 
 export default function WelcomePage() {
+
+
+  const moveCursor = (e) => {
+    document.querySelector(".cursorImg").style.top = `${e.clientY-45}px`;
+    document.querySelector(".cursorImg").style.left = `${e.clientX-55}px`;
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousemove", moveCursor);
+  },[])
+
   const [isPlaying, toggle] = useAudio(song);
 
   useEffect(() => {
@@ -58,12 +70,12 @@ export default function WelcomePage() {
     window.close();
   }
 
-  document.querySelector("body").style.cursor =
-    "url('../../assets/mainCharacter.png'), auto";
 
   return (
     <div className="WelcomePageContainer">
       <body>
+
+        <img className="cursorImg" src={cursorImg} />
         <div className="ContainerBackgroundImage">
           <Toaster
             toastOptions={{
@@ -94,7 +106,7 @@ export default function WelcomePage() {
               <button className="exit" onClick={closeTab}>
                 Leave
               </button>
-              <button onClick={toggle}>
+              <button className="musicButton" onClick={toggle}>
                 {isPlaying ? "Music on" : "Music off"}
               </button>
             </div>

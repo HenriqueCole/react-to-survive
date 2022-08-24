@@ -5,6 +5,14 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Press Start 2P", cursive;
+  cursor: none;
+}
+
+.cursorImg{
+  width: 110px;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .backgroundImage {
@@ -22,6 +30,7 @@
   transform: translate(-50%, -50%);
   width: 100%;
   text-align: center;
+  z-index: 0;
 }
 
 .containerActionsText {
@@ -47,7 +56,7 @@
   font-size: 35px;
   font-weight: bold;
   transition: 0.2s;
-  cursor: pointer;
+  cursor: none;
 }
 
 .exit:hover {
@@ -61,7 +70,6 @@ a {
   font-size: 35px;
   font-weight: bold;
   transition: 0.2s;
-  cursor: pointer;
 }
 
 a:hover {
@@ -89,19 +97,21 @@ a:hover {
   }
 }
 
-button {
+
+
+button:hover {
+  color: #b4b4b4;
+}
+
+.musicButton{
   background-color: transparent;
   border: none;
   color: #fff;
   font-size: 16px;
   font-weight: bold;
   transition: 0.2s;
-  cursor: pointer;
+  cursor: none;
   outline: none;
-}
-button:hover {
-  color: #b4b4b4;
-  cursor: url(../../assets/mainCharacter.png);
 }
 
 .usernameInput {
