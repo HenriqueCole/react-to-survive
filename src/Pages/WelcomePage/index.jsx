@@ -58,6 +58,9 @@ export default function WelcomePage() {
     window.close();
   }
 
+  document.querySelector("body").style.cursor =
+    "url('../../assets/mainCharacter.png'), auto";
+
   return (
     <div className="WelcomePageContainer">
       <body>
