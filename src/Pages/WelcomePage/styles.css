@@ -41,6 +41,20 @@
   font-size: 44px;
 }
 
+.exit {
+  text-decoration: none;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.exit:hover {
+  font-size: 40px;
+  color: #14235e;
+}
+
 a {
   text-decoration: none;
   color: #fff;

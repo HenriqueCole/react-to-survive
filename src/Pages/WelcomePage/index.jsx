@@ -47,11 +47,16 @@ export default function WelcomePage() {
   const [isPlaying, toggle] = useAudio(song);
 
   useEffect(() => {
-    if(!JSON.parse(localStorage.getItem("usersRanking"))){
+    if (!JSON.parse(localStorage.getItem("usersRanking"))) {
       localStorage.setItem("usersRanking", JSON.stringify([]));
     }
-    document.querySelector("img").ondragstart = () => (false);
-  },[])
+    document.querySelector("img").ondragstart = () => false;
+  }, []);
+
+  function closeTab() {
+    window.open("http://google.com", "_self");
+    window.close();
+  }
 
   return (
     <div className="WelcomePageContainer">
@@ -83,7 +88,9 @@ export default function WelcomePage() {
             <div className="containerActionsText">
               <a onClick={check}>Play!</a>
               <Link to="/ranking">Ranking</Link>
-              <Link to="#">Leave</Link>
+              <button className="exit" onClick={closeTab}>
+                Leave
+              </button>
               <button onClick={toggle}>
                 {isPlaying ? "Music on" : "Music off"}
               </button>
