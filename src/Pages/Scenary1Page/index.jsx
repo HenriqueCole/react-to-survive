@@ -35,6 +35,7 @@ export default function Scenary1Page() {
             arrowFrequency={3000}
             arrowSpeed={10}
             isStartingForward={true}
+            timer={timer}
           />
           {timer >= 10 &&
             <Enemy
@@ -43,6 +44,7 @@ export default function Scenary1Page() {
               arrowFrequency={2000}
               arrowSpeed={8}
               isStartingForward={false}
+              timer={timer}
             />
           }
           {timer >= 20 &&
@@ -52,6 +54,7 @@ export default function Scenary1Page() {
               arrowFrequency={6000}
               arrowSpeed={4}
               isStartingForward={true}
+              timer={timer}
             />
           }
           {timer >= 30 &&
@@ -61,6 +64,7 @@ export default function Scenary1Page() {
               arrowFrequency={3000}
               arrowSpeed={10}
               isStartingForward={false}
+              timer={timer}
             />
           }
           {timer >= 40 &&
@@ -70,6 +74,7 @@ export default function Scenary1Page() {
               arrowFrequency={4000}
               arrowSpeed={6}
               isStartingForward={true}
+              timer={timer}
             />
           }
         </div>
