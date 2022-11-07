@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import song from "../../music/game-music.mp3";
-import cursorImg from "../../assets/mainCharacter.png"
+import cursorImg from "../../assets/mainCharacter.png";
 
 import "./styles.css";
 
@@ -30,31 +30,31 @@ const useAudio = (url) => {
   return [playing, toggle];
 };
 
-function check() {
-  if (document.querySelector(".usernameInput").value == "") {
-    notify();
-  } else {
-    window.location.href = "/phases";
-  }
-  localStorage.setItem(
-    "username",
-    document.querySelector(".usernameInput").value
-  );
-}
-
 const notify = () => toast.error("Please enter an username");
 
 export default function WelcomePage() {
+  const [userName, setUserName] = useState("");
 
+  const navigate = useNavigate();
 
   const moveCursor = (e) => {
-    document.querySelector(".cursorImg").style.top = `${e.clientY-45}px`;
-    document.querySelector(".cursorImg").style.left = `${e.clientX-55}px`;
+    document.querySelector(".cursorImg").style.top = `${e.clientY - 45}px`;
+    document.querySelector(".cursorImg").style.left = `${e.clientX - 55}px`;
+  };
+
+  function check() {
+    if (userName == "") {
+      notify();
+      return;
+    }
+
+    localStorage.setItem("username", userName);
+    navigate("/phases");
   }
 
   useEffect(() => {
     document.addEventListener("mousemove", moveCursor);
-  },[])
+  }, []);
 
   const [isPlaying, toggle] = useAudio(song);
 
@@ -70,11 +70,9 @@ export default function WelcomePage() {
     window.close();
   }
 
-
   return (
     <div className="WelcomePageContainer">
       <body>
-
         <img className="cursorImg" src={cursorImg} />
         <div className="ContainerBackgroundImage">
           <Toaster
@@ -96,12 +94,22 @@ export default function WelcomePage() {
             <div className="containerInputUsername">
               <input
                 className="usernameInput"
+                value={userName}
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
                 type="text"
                 placeholder="Insert you username"
               />
             </div>
             <div className="containerActionsText">
-              <a onClick={check}>Play!</a>
+              <a
+                onClick={() => {
+                  check();
+                }}
+              >
+                Play!
+              </a>
               <Link to="/ranking">Ranking</Link>
               <button className="exit" onClick={closeTab}>
                 Leave
